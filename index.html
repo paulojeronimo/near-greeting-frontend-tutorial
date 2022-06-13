@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.17">
-<meta name="author" content="Paulo Jerônimo &lt;paulojeronimo@gmail.com&gt;, 2022-06-12">
+<meta name="author" content="Paulo Jerônimo &lt;paulojeronimo@gmail.com&gt;, 2022-06-13">
 <title>NEAR Greeting Frontend Tutorial</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <link rel="stylesheet" href="./asciidoctor.css">
@@ -16,22 +16,45 @@
 <div id="header">
 <h1>NEAR Greeting Frontend Tutorial</h1>
 <div class="details">
-<span id="author" class="author">Paulo Jerônimo &lt;paulojeronimo@gmail.com&gt;, 2022-06-12</span><br>
+<span id="author" class="author">Paulo Jerônimo &lt;paulojeronimo@gmail.com&gt;, 2022-06-13</span><br>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">NEAR Greeting Frontend Tutorial</div>
 <ul class="sectlevel1">
-<li><a href="#creating-the-project">1. Creating the project</a></li>
-<li><a href="#creating-an-account-for-the-contract">2. Creating an account for the contract</a></li>
-<li><a href="#setting-the-contract-name">3. Setting the contract name</a></li>
-<li><a href="#deploying-and-testing-locally">4. Deploying and testing locally</a></li>
-<li><a href="#deploying-to-github-pages">5. Deploying to GitHub Pages</a></li>
+<li><a href="#abstract">1. Abstract</a></li>
+<li><a href="#creating-the-project">2. Creating the project</a></li>
+<li><a href="#creating-an-account-for-the-contract">3. Creating an account for the contract</a></li>
+<li><a href="#setting-the-contract-name">4. Setting the contract name</a></li>
+<li><a href="#deploying-and-testing-locally">5. Deploying and testing locally</a></li>
+<li><a href="#deploying-to-gh-pages">6. Deploying to GitHub Pages</a></li>
+<li><a href="#other-useful-commands-and-extra-references">7. Other useful commands and extra references</a>
+<ul class="sectlevel2">
+<li><a href="#removing-the-existing-repository-through-command-line">7.1. Removing the existing repository through command line</a></li>
+<li><a href="#extra-feferences">7.2. Extra feferences</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="creating-the-project"><a class="anchor" href="#creating-the-project"></a>1. Creating the project</h2>
+<h2 id="abstract"><a class="anchor" href="#abstract"></a>1. Abstract</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This simple tutorial <a href="#deploying-to-gh-pages">makes available in GitHub
+Pages</a> a project created with <a href="https://github.com/near/create-near-app">create-near-app</a>
+with some slight modifications done by following the steps in this
+tutorial.</p>
+</div>
+<div class="paragraph">
+<p>If you want to know about how I install the tools used in this tutorial,
+<a href="https://paulojeronimo.com/near-rust-smart-contract-tutorial/">read my first tutorial about
+NEAR</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="creating-the-project"><a class="anchor" href="#creating-the-project"></a>2. Creating the project</h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -46,7 +69,7 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="creating-an-account-for-the-contract"><a class="anchor" href="#creating-an-account-for-the-contract"></a>2. Creating an account for the contract</h2>
+<h2 id="creating-an-account-for-the-contract"><a class="anchor" href="#creating-an-account-for-the-contract"></a>3. Creating an account for the contract</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>To follow the next steps, I created an account called
@@ -70,7 +93,7 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="setting-the-contract-name"><a class="anchor" href="#setting-the-contract-name"></a>3. Setting the contract name</h2>
+<h2 id="setting-the-contract-name"><a class="anchor" href="#setting-the-contract-name"></a>4. Setting the contract name</h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -82,10 +105,13 @@ $ sed -n '1p' $f
 const CONTRACT_NAME = process.env.CONTRACT_NAME || 'near-greeting-frontend.paulojeronimo-test4.testnet</pre>
 </div>
 </div>
+<div class="paragraph">
+<p>Ref.: <a href="https://docs.near.org/docs/api/naj-quick-reference" class="bare">https://docs.near.org/docs/api/naj-quick-reference</a></p>
+</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="deploying-and-testing-locally"><a class="anchor" href="#deploying-and-testing-locally"></a>4. Deploying and testing locally</h2>
+<h2 id="deploying-and-testing-locally"><a class="anchor" href="#deploying-and-testing-locally"></a>5. Deploying and testing locally</h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -105,17 +131,21 @@ $ git commit -m 'Initial commit'</pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>I use the <a href="https://github.com/cli/cli/blob/trunk/docs/install_linux.md">gh</a> command to do this.</p>
+<p>I use the <a href="https://github.com/cli/cli/blob/trunk/docs/install_linux.md">gh</a> command to do this in this way:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>$ gh auth login
-
-$ gh repo create near-greeting-frontend --source=. --public --remote=origin --push</pre>
+<pre>$ gh repo create $(basename "$PWD") --source=. --public --remote=origin --push</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Ref: <a href="https://cli.github.com/manual/gh_repo_create" class="bare">https://cli.github.com/manual/gh_repo_create</a></p>
+<p>If you need to login in GitHub, type <code>gh auth login</code> first.</p>
+</div>
+<div class="paragraph">
+<p>My created repo: <a href="https://github.com/paulojeronimo/near-greeting-frontend" class="bare">https://github.com/paulojeronimo/near-greeting-frontend</a></p>
+</div>
+<div class="paragraph">
+<p>Ref.: <a href="https://cli.github.com/manual/gh_repo_create" class="bare">https://cli.github.com/manual/gh_repo_create</a></p>
 </div>
 </td>
 </tr>
@@ -150,12 +180,27 @@ $ gh repo create near-greeting-frontend --source=. --public --remote=origin --pu
 </div>
 </div>
 <div class="sect1">
-<h2 id="deploying-to-github-pages"><a class="anchor" href="#deploying-to-github-pages"></a>5. Deploying to GitHub Pages</h2>
+<h2 id="deploying-to-gh-pages"><a class="anchor" href="#deploying-to-gh-pages"></a>6. Deploying to GitHub Pages</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>Update <code>.gitignore</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ cat &gt;&gt; .gitignore &lt;&lt;'EOF'
+.parcel-cache/
+contract/Cargo.lock
+contract/target/
+EOF</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Install package <code>gh-pages</code> and stage these changes.</p>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre>$ npm install -D gh-pages
-$ git add package*</pre>
+$ git add .</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -191,13 +236,83 @@ $ git add .
 $ git commit -m 'Added "deploy to gh-pages" support'</pre>
 </div>
 </div>
+<div id="issue-1" class="paragraph">
+<p>After the changes above, you can run the deploy script to make app
+available in GitHub Pages:</p>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre>$ npm run deploy</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Test the deployment in your GitHub Pages.</p>
+<p>In my case, this is the URL of the deployed app:
+<a href="https://paulojeronimo.com/near-greeting-frontend" class="bare">https://paulojeronimo.com/near-greeting-frontend</a></p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Currently I&#8217;m trying to solve this issue:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/issue-1.png" alt="issue 1"></span></p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="other-useful-commands-and-extra-references"><a class="anchor" href="#other-useful-commands-and-extra-references"></a>7. Other useful commands and extra references</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="removing-the-existing-repository-through-command-line"><a class="anchor" href="#removing-the-existing-repository-through-command-line"></a>7.1. Removing the existing repository through command line</h3>
+<div class="listingblock">
+<div class="content">
+<pre>$ gh repo delete near-greeting-frontend
+? Type paulojeronimo/near-greeting-frontend to confirm deletion: paulojeronimo/near-greeting-frontend
+✓ Deleted repository paulojeronimo/near-greeting-frontend</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="extra-feferences"><a class="anchor" href="#extra-feferences"></a>7.2. Extra feferences</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://examples.near.org/" class="bare">https://examples.near.org/</a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://near-examples.github.io/guest-book/" class="bare">https://near-examples.github.io/guest-book/</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="https://nearprotocol.github.io/near-chess/#" class="bare">https://nearprotocol.github.io/near-chess/#</a></p>
+</li>
+<li>
+<p><a href="https://www.youtube.com/watch?v=sm8w9tDnMZc" class="bare">https://www.youtube.com/watch?v=sm8w9tDnMZc</a> - Blockheads Ep 10: How to make a blockchain voting app</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/doriancrutcher/blockvotetutorial2" class="bare">https://github.com/doriancrutcher/blockvotetutorial2</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="https://stackoverflow.com/questions/64037130/getting-an-error-when-trying-to-fetch-keys-from-near-network-via-near-cli" class="bare">https://stackoverflow.com/questions/64037130/getting-an-error-when-trying-to-fetch-keys-from-near-network-via-near-cli</a></p>
+</li>
+</ul>
+</div>
 </div>
 </div>
 </div>
